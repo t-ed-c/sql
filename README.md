@@ -12,6 +12,8 @@ sql/
 │   └── filters.sql
 ├── Functions/               # Day 3: SQL Functions & Expressions
 │   └── functions.sql
+├── Grouping/                # Day 4: Grouping & Subqueries
+│   └── grouping.sql
 └── README.md               # This file
 ```
 
@@ -24,7 +26,7 @@ sql/
 ### Quick Setup
 1. Clone this repository
 2. Connect to your Oracle database
-3. Run the scripts in order (Day 1 → Day 2 → Day 3)
+3. Run the scripts in order (Day 1 → Day 2 → Day 3 → Day 4)
 
 ## 📚 Learning Path
 
@@ -64,6 +66,18 @@ Explore powerful SQL functions and data manipulation:
 - 🔄 **Window Functions** with OVER clause
 - ⚡ **CASE** statements for conditional logic
 
+### Day 4: Grouping & Subqueries
+**File:** `Grouping/grouping.sql`
+
+Master advanced data analysis and complex queries:
+- 📊 **GROUP BY** for sophisticated data grouping
+- 🔍 **HAVING** clause for filtering grouped results
+- 🎯 **Scalar Subqueries** for single value comparisons
+- 📋 **IN Subqueries** for multiple value matching
+- 🔗 **Subqueries in SELECT** for inline expressions
+- 📊 **Derived Tables** with subqueries in FROM clause
+- 🧮 **Complex Aggregations** with conditional logic
+
 ## 💡 Key Learning Outcomes
 
 After completing this course, you'll be able to:
@@ -73,6 +87,9 @@ After completing this course, you'll be able to:
 - Manipulate strings and dates effectively
 - Group and summarize data
 - Apply conditional logic in SQL
+- Write advanced subqueries for complex data retrieval
+- Filter grouped data with HAVING clauses
+- Create derived tables for sophisticated analysis
 
 ## 🎯 Sample Queries
 
@@ -99,6 +116,25 @@ SELECT
   UPPER(course) AS course_upper,
   LENGTH(first_name) AS name_length
 FROM students;
+```
+
+### Advanced Grouping & Subqueries
+```sql
+-- Students older than average age
+SELECT *
+FROM students
+WHERE age > (SELECT AVG(age) FROM students)
+ORDER BY age DESC;
+
+-- Courses with average age analysis
+SELECT
+  course,
+  ROUND(AVG(age), 1) AS avg_age,
+  COUNT(*) AS total_students
+FROM students
+GROUP BY course
+HAVING COUNT(*) > 1
+ORDER BY avg_age DESC;
 ```
 
 ## 🗃️ Sample Data
@@ -130,6 +166,11 @@ The repository includes a student database with the following structure:
 @Functions/functions.sql
 ```
 
+4. **Master Day 4**: Learn grouping and subqueries
+```sql
+@Grouping/grouping.sql
+```
+
 ## 📝 Best Practices Demonstrated
 
 - ✅ Proper table design with primary keys
@@ -143,11 +184,13 @@ The repository includes a student database with the following structure:
 
 Consider expanding your SQL knowledge with:
 - JOINs between multiple tables
-- Subqueries and CTEs
+- Advanced window functions
+- Common Table Expressions (CTEs)
 - Stored procedures and functions
 - Triggers and constraints
 - Performance optimization
-- Advanced analytics functions
+- Database design principles
+- Data normalization
 
 ## 📞 Contributing
 
